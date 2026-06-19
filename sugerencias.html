@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sugerencias - FocusFlow</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  :root {
+    --bg: #f4f6f0;
+    --surface: #ffffff;
+    --surface2: #eef1ea;
+    --accent: #5a8a5a;
+    --accent2: #7ab87a;
+    --text: #2a3320;
+    --muted: #7a8870;
+    --border: rgba(90,138,90,0.18);
+    --pill-bg: rgba(90,138,90,0.1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    top: -200px; left: 50%;
+    transform: translateX(-50%);
+    width: 700px; height: 500px;
+    background: radial-gradient(ellipse, rgba(90,138,90,0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  header {
+    position: relative; z-index: 1;
+    padding: 2rem 1.5rem 0;
+    max-width: 760px; margin: 0 auto;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .logo {
+    width: 42px; height: 42px; border-radius: 12px;
+    overflow: hidden; flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(90,138,90,0.15);
+  }
+  .logo img { width: 100%; height: 100%; object-fit: cover; }
+  .app-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 17px; color: var(--text); }
+  .app-name span { color: var(--accent); }
+
+  .hero {
+    position: relative; z-index: 1;
+    max-width: 760px; margin: 0 auto;
+    padding: 3rem 1.5rem 2rem;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--pill-bg); border: 1px solid var(--border);
+    border-radius: 999px; padding: 5px 14px;
+    font-size: 12px; color: var(--accent); font-weight: 500; margin-bottom: 1rem;
+  }
+  .hero-tag i { font-size: 15px; }
+  .hero h1 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 0.75rem;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero p { color: var(--muted); font-size: 16px; max-width: 480px; line-height: 1.7; }
+
+  main {
+    position: relative; z-index: 1;
+    max-width: 760px; margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+    display: grid; gap: 1.5rem;
+  }
+
+  .section-label {
+    font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;
+  }
+  .section-label i { font-size: 16px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  .type-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px;
+  }
+  .type-card {
+    background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: 14px; padding: 16px; cursor: pointer; transition: all .2s;
+    box-shadow: 0 1px 4px rgba(90,138,90,0.06);
+  }
+  .type-card:hover { border-color: rgba(90,138,90,0.4); }
+  .type-card.selected { border-color: var(--accent); background: #f0f7f0; }
+  .type-card.selected .type-icon { background: var(--accent); color: #fff; }
+  .type-icon {
+    width: 36px; height: 36px; border-radius: 9px;
+    background: var(--pill-bg); display: flex; align-items: center; justify-content: center;
+    font-size: 20px; color: var(--accent); margin-bottom: 10px; transition: all .2s;
+  }
+  .type-name { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+  .type-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .contact-card {
+    background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: 16px; padding: 20px;
+    text-decoration: none; color: var(--text);
+    transition: border-color .2s, background .2s;
+    display: flex; flex-direction: column; gap: 10px;
+    box-shadow: 0 1px 4px rgba(90,138,90,0.06);
+  }
+  .contact-card:hover { border-color: var(--accent); background: #f0f7f0; }
+  .contact-icon {
+    width: 40px; height: 40px; border-radius: 11px;
+    display: flex; align-items: center; justify-content: center; font-size: 22px;
+    color: var(--accent);
+  }
+  .contact-icon.wa { background: rgba(37,211,102,0.12); color: #25d366; }
+  .contact-icon.mail { background: var(--pill-bg); }
+  .contact-card h4 { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; }
+  .contact-card p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .contact-link { font-size: 13px; color: var(--accent); font-weight: 500; margin-top: auto; display: flex; align-items: center; gap: 4px; }
+  .contact-link i { font-size: 15px; }
+
+  .process-card {
+    background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: 16px; padding: 1.5rem;
+    box-shadow: 0 1px 4px rgba(90,138,90,0.06);
+  }
+  .steps { display: flex; flex-direction: column; }
+  .step { display: flex; gap: 14px; align-items: flex-start; padding-bottom: 20px; }
+  .step:last-child { padding-bottom: 0; }
+  .step-line { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+  .step-dot {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--pill-bg); border: 1.5px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; color: var(--accent); flex-shrink: 0;
+  }
+  .step-connector { width: 1px; flex: 1; background: var(--border); min-height: 24px; margin-top: 4px; }
+  .step:last-child .step-connector { display: none; }
+  .step-body { padding-top: 6px; }
+  .step-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+  .step-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  .version-bar {
+    background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: 12px; padding: 14px 18px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+  .version-bar span { font-size: 13px; color: var(--muted); }
+  .version-badge {
+    background: var(--pill-bg); border: 1px solid var(--border);
+    border-radius: 999px; padding: 4px 14px;
+    font-size: 12px; color: var(--accent); font-weight: 600;
+  }
+
+  @media (max-width: 500px) {
+    .contact-grid { grid-template-columns: 1fr; }
+    .type-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><img src="logo1.png" alt="FocusFlow"></div>
+  <div class="app-name">Focus<span>Flow</span></div>
+</header>
+
+<div class="hero">
+  <div class="hero-tag"><i class="ti ti-message-circle" aria-hidden="true"></i> Tu opinión importa</div>
+  <h1>Ayúdanos a <span>mejorar</span></h1>
+  <p>Tu opinión es fundamental para que FocusFlow siga evolucionando. Comparte ideas, errores o experiencias.</p>
+</div>
+
+<main>
+  <div>
+    <div class="section-label"><i class="ti ti-list-check" aria-hidden="true"></i> ¿Qué tipo de sugerencia tienes?</div>
+    <div class="type-grid">
+      <div class="type-card" onclick="selectType(this, 'Nueva función')">
+        <div class="type-icon"><i class="ti ti-bulb" aria-hidden="true"></i></div>
+        <div class="type-name">Nueva función</div>
+        <div class="type-desc">Ideas para mejorar la app</div>
+      </div>
+      <div class="type-card" onclick="selectType(this, 'Reporte de error')">
+        <div class="type-icon"><i class="ti ti-bug" aria-hidden="true"></i></div>
+        <div class="type-name">Reporte de error</div>
+        <div class="type-desc">Algo no funciona bien</div>
+      </div>
+      <div class="type-card" onclick="selectType(this, 'Experiencia')">
+        <div class="type-icon"><i class="ti ti-star" aria-hidden="true"></i></div>
+        <div class="type-name">Experiencia</div>
+        <div class="type-desc">Algo que cambiarías</div>
+      </div>
+      <div class="type-card" onclick="selectType(this, 'Contenido')">
+        <div class="type-icon"><i class="ti ti-book" aria-hidden="true"></i></div>
+        <div class="type-name">Contenido</div>
+        <div class="type-desc">Rutinas, frases, recursos</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="section-label"><i class="ti ti-send" aria-hidden="true"></i> ¿Cómo enviarnos tu sugerencia?</div>
+    <div class="contact-grid">
+      <a class="contact-card" id="waLink" href="https://wa.me/51934574931?text=Sugerencia%20-%20FocusFlow%3A%20" target="_blank">
+        <div class="contact-icon wa"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i></div>
+        <h4>WhatsApp</h4>
+        <p>Escríbenos directamente. Respondemos durante horario de atención.</p>
+        <span class="contact-link">+51 934 574 931 <i class="ti ti-arrow-right" aria-hidden="true"></i></span>
+      </a>
+      <a class="contact-card" id="mailLink" href="mailto:appmovilesneo@gmail.com?subject=Sugerencia%20-%20FocusFlow" target="_blank">
+        <div class="contact-icon mail"><i class="ti ti-mail" aria-hidden="true"></i></div>
+        <h4>Correo electrónico</h4>
+        <p>Envía tu sugerencia o reporte con capturas si es necesario.</p>
+        <span class="contact-link">appmovilesneo@gmail.com <i class="ti ti-arrow-right" aria-hidden="true"></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div>
+    <div class="section-label"><i class="ti ti-route" aria-hidden="true"></i> ¿Qué pasa con tu sugerencia?</div>
+    <div class="process-card">
+      <div class="steps">
+        <div class="step">
+          <div class="step-line">
+            <div class="step-dot"><i class="ti ti-inbox" aria-hidden="true"></i></div>
+            <div class="step-connector"></div>
+          </div>
+          <div class="step-body">
+            <div class="step-title">Recibimos tu mensaje</div>
+            <div class="step-desc">Cada sugerencia llega directamente a nuestro equipo de desarrollo.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-line">
+            <div class="step-dot"><i class="ti ti-search" aria-hidden="true"></i></div>
+            <div class="step-connector"></div>
+          </div>
+          <div class="step-body">
+            <div class="step-title">Lo revisamos y evaluamos</div>
+            <div class="step-desc">Analizamos si es viable técnicamente y su impacto en la experiencia de usuario.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-line">
+            <div class="step-dot"><i class="ti ti-rocket" aria-hidden="true"></i></div>
+            <div class="step-connector"></div>
+          </div>
+          <div class="step-body">
+            <div class="step-title">Se incluye en futuras versiones</div>
+            <div class="step-desc">Las mejores ideas se incorporan en las próximas actualizaciones de FocusFlow.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-line">
+            <div class="step-dot"><i class="ti ti-heart" aria-hidden="true"></i></div>
+          </div>
+          <div class="step-body">
+            <div class="step-title">Gracias por tu aporte</div>
+            <div class="step-desc">No podemos responder a todos individualmente, pero cada mensaje es leído y valorado.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="version-bar">
+    <span>Última actualización: 10 de junio de 2026</span>
+    <span class="version-badge">Versión 1.3</span>
+  </div>
+</main>
+
+<script>
+function selectType(card, type) {
+  document.querySelectorAll('.type-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  document.getElementById('waLink').href = `https://wa.me/51934574931?text=Sugerencia%20(${encodeURIComponent(type)})%20-%20FocusFlow%3A%20`;
+  document.getElementById('mailLink').href = `mailto:appmovilesneo@gmail.com?subject=Sugerencia%20(${encodeURIComponent(type)})%20-%20FocusFlow`;
+}
+</script>
+</body>
+</html>
